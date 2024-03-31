@@ -34,6 +34,7 @@ func minWindow(s string, t string) (ans string) {
 			} else {
 				break
 			}
+
 		}
 
 		//for k, v := range mps {
