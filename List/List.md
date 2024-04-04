@@ -194,8 +194,8 @@ func detectCycle(head *ListNode) *ListNode {
 	return nil
 }
 ```
-  
-  
+
+
 ## 合并两个有序链表
 > Problem: [21. 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/description/)
 
@@ -245,7 +245,73 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	return head.Next
 }
 ```
-  
+
+## 两数相加
+> Problem: [2. 两数相加](https://leetcode.cn/problems/add-two-numbers/description/)
+
+
+## 思路
+
+> 模拟
+
+## 解题方法
+
+> 使用一条新的链来装结果，注意“进位”的模拟即可
+
+## 复杂度
+
+时间复杂度:
+> $O(n)$
+
+空间复杂度:
+> $O(n)$
+
+
+
+## Code
+```Go []
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	head := &ListNode{}
+	tmp := head
+	flag := false
+
+	for l1 != nil || l2 != nil {
+		var v1, v2 int
+		if l1 != nil {
+			v1 = l1.Val
+		}
+		if l2 != nil {
+			v2 = l2.Val
+		}
+		value := v1 + v2
+		if flag {
+			value++
+			flag = false
+		}
+		if value >= 10 {
+			flag = true
+		}
+		value %= 10
+
+		nowNode := &ListNode{Val: value}
+		tmp.Next = nowNode
+		tmp = tmp.Next
+
+		if l1 != nil {
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			l2 = l2.Next
+		}
+	}
+	if flag {
+		last := &ListNode{Val: 1}
+		tmp.Next = last
+	}
+
+	return head.Next
+}
+```
 
 
 
